@@ -90,7 +90,7 @@ conda config --add channels paulscherrerinstitute
 <a id="rest_interface"></a>
 # REST interface
 Details about the rest interface can be found in the writer library documentation: 
-[lib\_cpp\_h5\_writer](https://github.com/paulscherrerinstitute/sf_cpp_h5_writer)
+[lib\_cpp\_h5\_writer](https://github.com/paulscherrerinstitute/sf_cpp_h5_writer#rest_interface)
 
 <a id="file_format"></a>
 # File format
