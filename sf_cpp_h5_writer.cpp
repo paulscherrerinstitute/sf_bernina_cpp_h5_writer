@@ -16,7 +16,7 @@ int main (int argc, char *argv[])
         cout << "Usage: sf_cpp_h5_writer [connection_address] [output_file] [n_frames] [rest_port] [user_id]" << endl;
         cout << "\tconnection_address: Address to connect to the stream (PULL). Example: tcp://127.0.0.1:40000" << endl;
         cout << "\toutput_file: Name of the output file." << endl;
-        cout << "\tn_frames: Number of images to acquire. 0 for infinity (untill /stop is called)." << endl;
+        cout << "\tn_frames: Number of images to acquire. 0 for infinity (until /stop is called)." << endl;
         cout << "\trest_port: Port to start the REST Api on." << endl;
         cout << "\tuser_id: uid under which to run the writer. -1 to leave it as it is." << endl;
         cout << endl;
