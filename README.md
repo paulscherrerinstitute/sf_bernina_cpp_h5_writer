@@ -24,7 +24,7 @@ Usage: sf_cpp_h5_writer [connection_address] [output_file] [n_frames] [rest_port
 
 After the writer process has started, you can communicate with it using the REST interface.
 
-For more information see the library documentation (lib\_cpp\_h5\_writer)[https://github.com/paulscherrerinstitute/sf_cpp_h5_writer].
+For more information see the library documentation [lib\_cpp\_h5\_writer](https://github.com/paulscherrerinstitute/sf_cpp_h5_writer).
 
 ## Shared library problems
 Sometimes some shared libraries are missing from your library path (this is deployment dependent). In this case, if you are using a conda 
@@ -79,17 +79,18 @@ The library relies on the following packages:
 - gcc
 - lib\_cpp\_h5\_writer
 
-When you are using conda to install the packages, you might need to add the **conda-forge** channel to
+When you are using conda to install the packages, you might need to add the **conda-forge** and **paulscherrerinstitute** channels to
 your conda config:
 
 ```
 conda config --add channels conda-forge
+conda config --add channels paulscherrerinstitute
 ```
 
 <a id="rest_interface"></a>
 # REST interface
 Details about the rest interface can be found in the writer library documentation: 
-(lib\_cpp\_h5\_writer)[https://github.com/paulscherrerinstitute/sf_cpp_h5_writer]
+[lib\_cpp\_h5\_writer](https://github.com/paulscherrerinstitute/sf_cpp_h5_writer)
 
 <a id="file_format"></a>
 # File format
