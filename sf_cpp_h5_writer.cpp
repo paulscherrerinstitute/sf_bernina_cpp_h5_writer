@@ -3,11 +3,11 @@
 #include <stdexcept>
 
 #include "cpp_h5_writer/config.hpp"
-#include "cpp_h5_writer/ProcessManager.hpp"
 #include "cpp_h5_writer/WriterManager.hpp"
 #include "cpp_h5_writer/ZmqReceiver.hpp"
 
 #include "SfFormat.cpp"
+#include "SfProcessManager.hpp"
 
 int main (int argc, char *argv[])
 {
@@ -57,7 +57,7 @@ int main (int argc, char *argv[])
 
     int rest_port = atoi(argv[4]);
 
-    ProcessManager::run_writer(manager, format, receiver, rest_port);
+    SfProcessManager::run_writer(manager, format, receiver, rest_port);
 
     return 0;
 }
