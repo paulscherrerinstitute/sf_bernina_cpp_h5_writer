@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/paulscherrerinstitute/sf_cpp_h5_writer.svg?branch=master)](https://travis-ci.org/paulscherrerinstitute/sf_cpp_h5_writer/) 
+[![Build Status](https://travis-ci.org/paulscherrerinstitute/mx_cpp_h5_writer.svg?branch=master)](https://travis-ci.org/paulscherrerinstitute/mx_cpp_h5_writer)
 
 # sf_cpp_h5_writer
 H5 detector data writer for SwissFEL.
