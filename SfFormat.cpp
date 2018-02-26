@@ -23,11 +23,10 @@ class SfFormat : public H5Format
             // Which type should be the parameters you receive over the REST api.
             input_value_type.reset(
             new unordered_map<string, DATA_TYPE>({
-                {"file_info/date", NX_CHAR},
-                {"file_info/version", NX_CHAR},
-                {"file_info/owner", NX_CHAR},
-                {"file_info/instrument", NX_CHAR},
-                {"experiment_info/Pgroup", NX_CHAR},
+                {"general/created", NX_DATE_TIME},
+                {"general/user", NX_CHAR},
+                {"general/process", NX_CHAR},
+                {"general/instrument", NX_CHAR}
             }));
 
             // Default values used in the file format.
@@ -36,25 +35,25 @@ class SfFormat : public H5Format
             // After format has been writen, where to move the raw datasets.
             dataset_move_mapping.reset(new std::unordered_map<string, string>(
             {
-                {config::raw_image_dataset_name, "data/image"},
-                {"pulse_id", "data/pulse_id"},
+                {config::raw_image_dataset_name, "data/detector/data"},
+                {"pulse_id", "data/detector/pulse_id"},
+                {"frame", "data/detector/frame"},
+                {"is_good_frame", "data/detector/is_good_frame"},
             }));
 
             // Definition of the file format.
             file_format.reset(
             new h5_parent("", EMPTY_ROOT, {
-                s_ptr(new h5_group("file_info", {
-                    s_ptr(new h5_dataset("Date", "file_info/date", NX_DATE_TIME)),
-                    s_ptr(new h5_dataset("Version", "file_info/version", NX_CHAR)),
-                    s_ptr(new h5_dataset("Owner", "file_info/owner", NX_CHAR)),
-                    s_ptr(new h5_dataset("Instrument", "file_info/instrument", NX_CHAR)),
+                s_ptr(new h5_group("general", {
+                    s_ptr(new h5_dataset("created", "general/date", NX_DATE_TIME)),
+                    s_ptr(new h5_dataset("user", "general/version", NX_CHAR)),
+                    s_ptr(new h5_dataset("process", "general/owner", NX_CHAR)),
+                    s_ptr(new h5_dataset("instrument", "general/instrument", NX_CHAR)),
                 })),
 
-                s_ptr(new h5_group("experiment_info", {
-                    s_ptr(new h5_dataset("Pgroup", "experiment_info/Pgroup", NX_CHAR)),
-                })),
-
-                s_ptr(new h5_group("data")),
+                s_ptr(new h5_group("data", {
+                    s_ptr(new h5_group("detector", {}))
+                }))
             }));
         }
 
