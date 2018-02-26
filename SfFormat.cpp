@@ -45,9 +45,9 @@ class SfFormat : public H5Format
             file_format.reset(
             new h5_parent("", EMPTY_ROOT, {
                 s_ptr(new h5_group("general", {
-                    s_ptr(new h5_dataset("created", "general/date", NX_DATE_TIME)),
-                    s_ptr(new h5_dataset("user", "general/version", NX_CHAR)),
-                    s_ptr(new h5_dataset("process", "general/owner", NX_CHAR)),
+                    s_ptr(new h5_dataset("created", "general/created", NX_DATE_TIME)),
+                    s_ptr(new h5_dataset("user", "general/user", NX_CHAR)),
+                    s_ptr(new h5_dataset("process", "general/process", NX_CHAR)),
                     s_ptr(new h5_dataset("instrument", "general/instrument", NX_CHAR)),
                 })),
 
