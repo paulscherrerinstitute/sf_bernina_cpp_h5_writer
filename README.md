@@ -16,12 +16,13 @@ H5 detector data writer for SwissFEL.
 # Quick start
 
 ```bash
-Usage: sf_cpp_h5_writer [connection_address] [output_file] [n_frames] [rest_port] [user_id]
+Usage: sf_cpp_h5_writer [connection_address] [output_file] [n_frames] [rest_port] [user_id] [bsread_address]
         connection_address: Address to connect to the stream (PULL). Example: tcp://127.0.0.1:40000
         output_file: Name of the output file.
         n_frames: Number of images to acquire. 0 for infinity (untill /stop is called).
         rest_port: Port to start the REST Api on.
         user_id: uid under which to run the writer. -1 to leave it as it is.
+        bsread_address: HTTP address of the bsread REST api.
 ```
 
 After the writer process has started, you can communicate with it using the REST interface.
