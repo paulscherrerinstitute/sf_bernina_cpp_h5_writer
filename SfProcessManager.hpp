@@ -20,18 +20,21 @@ namespace SfProcessManager {
     void notify_first_pulse_id(const string& bsread_rest_address, uint64_t pulse_id) {
         // First pulse_id should be an async operation - we do not want to make the writer wait.
         async(launch::async, [pulse_id, &bsread_rest_address]{
-            cout << "Sending first received pulse_id " << pulse_id << " to bsread_rest_address " << bsread_rest_address << endl;
+            try {
+                cout << "Sending first received pulse_id " << pulse_id << " to bsread_rest_address " << bsread_rest_address << endl;
 
-            stringstream request;
-            request << "curl -X PUT " << bsread_rest_address << "/start_pulse_id/" << pulse_id;
+                stringstream request;
+                request << "curl -X PUT " << bsread_rest_address << "/start_pulse_id/" << pulse_id;
 
-            string request_call(request.str());
+                string request_call(request.str());
 
-            #ifdef DEBUG_OUTPUT
-                cout << "[SfProcessManager::notify_first_pulse_id] Sending request (" << request_call << ")." << endl;
-            #endif
+                #ifdef DEBUG_OUTPUT
+                    cout << "[SfProcessManager::notify_first_pulse_id] Sending request (" << request_call << ")." << endl;
+                #endif
 
-            system(request_call.c_str());
+                system(request_call.c_str());
+            } catch (...){}
+            
         });
     }
 
@@ -39,16 +42,18 @@ namespace SfProcessManager {
         // Last pulse_id should be a sync operation - we do not want to terminate the process to quickly.
         cout << "Sending last received pulse_id " << pulse_id << " to bsread address " << bsread_rest_address << endl;
 
-        stringstream request;
-        request << "curl -X PUT " << bsread_rest_address << "/stop_pulse_id/" << pulse_id;
+        try {
+            stringstream request;
+            request << "curl -X PUT " << bsread_rest_address << "/stop_pulse_id/" << pulse_id;
 
-        string request_call(request.str());
+            string request_call(request.str());
 
-        #ifdef DEBUG_OUTPUT
-            cout << "[SfProcessManager::notify_last_pulse_id] Sending request (" << request_call << ")." << endl;
-        #endif
+            #ifdef DEBUG_OUTPUT
+                cout << "[SfProcessManager::notify_last_pulse_id] Sending request (" << request_call << ")." << endl;
+            #endif
 
-        system(request_call.c_str());
+            system(request_call.c_str());
+        } catch (...){}
     }
     void receive_zmq(WriterManager& manager, RingBuffer& ring_buffer,
         ZmqReceiver& receiver, const H5Format& format)
