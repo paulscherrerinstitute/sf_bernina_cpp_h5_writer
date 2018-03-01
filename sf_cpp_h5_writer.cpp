@@ -34,6 +34,13 @@ int main (int argc, char *argv[])
             cout << "[sf_cpp_h5_writer::main] Setting process uid to " << user_id << endl;
         #endif
 
+        if (setgid(user_id)) {
+            stringstream error_message;
+            error_message << "[sf_cpp_h5_writer::main] Cannot set group_id to " << user_id << endl;
+
+            throw runtime_error(error_message.str());
+        }
+
         if (setuid(user_id)) {
             stringstream error_message;
             error_message << "[sf_cpp_h5_writer::main] Cannot set user_id to " << user_id << endl;
