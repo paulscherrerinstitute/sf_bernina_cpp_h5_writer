@@ -24,7 +24,7 @@ namespace SfProcessManager {
                 cout << "Sending first received pulse_id " << pulse_id << " to bsread_rest_address " << bsread_rest_address << endl;
 
                 stringstream request;
-                request << "curl -X PUT " << bsread_rest_address << "/start_pulse_id/" << pulse_id;
+                request << "curl -X PUT " << bsread_rest_address << "start_pulse_id/" << pulse_id;
 
                 string request_call(request.str());
 
@@ -44,7 +44,9 @@ namespace SfProcessManager {
 
         try {
             stringstream request;
-            request << "curl -X PUT " << bsread_rest_address << "/stop_pulse_id/" << pulse_id;
+            request << "curl -X PUT " << bsread_rest_address << "stop_pulse_id/" << pulse_id;
+
+            cout << "Request: " << request.str() << endl;
 
             string request_call(request.str());
 
