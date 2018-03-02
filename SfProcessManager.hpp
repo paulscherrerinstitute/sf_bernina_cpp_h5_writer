@@ -176,14 +176,6 @@ namespace SfProcessManager {
                     if (type == "JF4.5M_header") {
                         value_shape = {9};
                         type = "int64";
-
-                        cout << name << ": [";
-
-                        for (int i=0; i<9; ++i) {
-                            cout << *reinterpret_cast<int64_t*>(value.get()+i) << ", ";
-                        }
-
-                        cout << "]" << endl;
                     }
 
                     writer.write_data(name,
