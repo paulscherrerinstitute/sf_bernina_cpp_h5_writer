@@ -172,7 +172,7 @@ namespace SfProcessManager {
                     auto endianness = "little";
                     auto value_bytes_size = type_to_size_mapping.at(type);
 
-                    // TODO: Hack! Remove!
+                    // TODO: Hack! Remove but also take care of header length in bytes.
                     if (type == "JF4.5M_header") {
                         value_shape = {9};
                         type = "int64";
