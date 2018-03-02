@@ -64,6 +64,16 @@ int main (int argc, char *argv[])
         {"pulse_id", "uint64"},
         {"frame", "uint64"},
         {"is_good_frame", "uint64"},
+        {"daq_rec", "int64"},
+
+        {"missing_packets_1", "JF4.5M_header"},
+        {"missing_packets_2", "JF4.5M_header"},
+        {"daq_recs", "JF4.5M_header"},
+        {"framenum_diff", "JF4.5M_header"},
+        {"pulse_ids", "JF4.5M_header"},
+        {"framenums", "JF4.5M_header"},
+        {"pulse_id_diff", "JF4.5M_header"},
+        {"module_number", "JF4.5M_header"},
     });
     ZmqReceiver receiver(connect_address, n_io_threads, receive_timeout, header_values);
 

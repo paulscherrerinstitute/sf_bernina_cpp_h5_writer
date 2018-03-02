@@ -115,6 +115,7 @@ namespace SfProcessManager {
             {"int64", 8},
             {"float32", 4},
             {"float64", 8},
+            {"JF4.5M_header", 72},
         };
         
         uint64_t last_pulse_id = 0;
@@ -151,11 +152,12 @@ namespace SfProcessManager {
                 for (const auto& header_type : *header_values_type) {
 
                     auto& name = header_type.first;
-                    auto& type = header_type.second;
+                    // TODO: Make it a reference again after the hack is removed.
+                    string type = header_type.second;
 
                     auto value = received_data.first->header_values.at(name);
 
-                    // Ugly hack until we get the start sequence in the bsread stream itself.
+                    // TODO: Ugly hack until we get the start sequence in the bsread stream itself.
                     if (name == "pulse_id") {
                         if (!last_pulse_id) {
                             last_pulse_id = *(reinterpret_cast<uint64_t*>(value.get()));
@@ -169,6 +171,20 @@ namespace SfProcessManager {
                     vector<size_t> value_shape = {1};
                     auto endianness = "little";
                     auto value_bytes_size = type_to_size_mapping.at(type);
+
+                    // TODO: Hack! Remove!
+                    if (type == "JF4.5M_header") {
+                        value_shape = {9};
+                        type = "int64";
+
+                        cout << name << ": [";
+
+                        for (int i=0; i<9; ++i) {
+                            cout << *reinterpret_cast<int64_t*>(value.get()+i) << ", ";
+                        }
+
+                        cout << "]" << endl;
+                    }
 
                     writer.write_data(name,
                                     received_data.first->frame_index,
