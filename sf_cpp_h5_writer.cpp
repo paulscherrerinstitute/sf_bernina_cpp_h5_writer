@@ -53,6 +53,24 @@ int main (int argc, char *argv[])
     string output_file = string(argv[2]);
     string bsread_rest_address = string(argv[6]);
 
+    // Create the output folder if it does not exist.
+    size_t file_separator_index = output_file.rfind('/');
+    
+    // Do not create folders for a reletive filename.
+    if (file_separator_index != string::npos) {
+        string output_folder(output_file.substr(0, file_separator_index));
+
+        cout << "[sf_cpp_h5_writer::main] Creating folder " << output_folder << endl;
+
+        string create_folder_command("mkdir -p " + output_folder);
+
+        cout << "[sf_cpp_h5_writer::main] Executing command system(" << create_folder_command << ");" << endl;
+        system(create_folder_command.c_str());
+
+    } else {
+        cout << "[sf_cpp_h5_writer::main] Output filename '"<< output_file << "' appears to be relative. No folders will be created." << endl;
+    }
+
     SfFormat format;
     
     WriterManager manager(format.get_input_value_type(), output_file, n_frames);
