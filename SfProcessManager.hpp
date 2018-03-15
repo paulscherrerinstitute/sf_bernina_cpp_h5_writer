@@ -116,6 +116,7 @@ namespace SfProcessManager {
             {"float32", 4},
             {"float64", 8},
             {"JF4.5M_header", 72},
+            {"JF2.0M_header", 32},
         };
         
         uint64_t last_pulse_id = 0;
@@ -175,6 +176,11 @@ namespace SfProcessManager {
                     // TODO: Hack! Remove but also take care of header length in bytes.
                     if (type == "JF4.5M_header") {
                         value_shape = {9};
+                        type = "int64";
+                    }
+
+                    if (type == "JF2.0M_header") {
+                        value_shape = {4};
                         type = "int64";
                     }
 
